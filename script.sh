@@ -34,10 +34,12 @@ ssh $userslave@$hostslave "chmod -R 777 /tmp/$nsdbmaster.ldif"
 ssh $userslave@$hostslave "/usr/lib/dirsrv/$dirmaster/bak2db /tmp/$nsdbmaster.ldif/"
 ssh $userslave@$hostslave "service dirsrv start"
 
+
 ### synchronisation des boites mail#####
 unison /var/lib/imap/ ssh://web.opensrc.fr//var/lib/imap/ >> /var/log/replica/journal.log
 unison /var/spool/imap/ ssh://web.opensrc.fr//var/spool/imap/ >> /var/log/replica/journal.log
 ssh $userslave@$hostslave 'chown -R cyrus:mail /var/spool/imap'
+ssh $userslave@$hostslave "postfix set-permissions"
 echo "fin du cron le $(date +%y-%m-%d-%H:%M:%S)"
 
 
