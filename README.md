@@ -15,3 +15,4 @@ crontab -e
 puis ajouter la ligne :
 
 @hourly /root/replica_kolab.sh >>/var/log/replica/cron.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /root/replica_kolab.sh >>/var/log/replica/cron.log
